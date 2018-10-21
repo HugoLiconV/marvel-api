@@ -22,6 +22,11 @@ nav>ul {
   color: rgba(85, 172, 238, 1);
 }
 
+.navbar a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .logo {
   margin-left: auto;
   margin-right: auto;
