@@ -7,7 +7,6 @@ import Characters from '../Characters/Characters'
 const Main = () => {
   return (
     <main>
-      <h1>Main!</h1>
       <Hero/>
       <Switch>
         <Route exact path="/" component={Comics}/>
