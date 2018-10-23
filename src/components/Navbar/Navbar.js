@@ -3,14 +3,14 @@ import './Navbar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faReact } from '@fortawesome/free-brands-svg-icons'
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   return (
     <nav>
       <ul className="navbar" role="navigation">
-        <li><Link to="/comics">Comics</Link></li>
-        <li><Link to="/characters">Characters</Link></li>
+        <li><NavLink activeClassName="selected" to="/comics">Comics</NavLink></li>
+        <li><NavLink activeClassName="selected" to="/characters">Characters</NavLink></li>
         <li className="logo">
           <FontAwesomeIcon className="icon" icon={faReact}/>React Comics
         </li>

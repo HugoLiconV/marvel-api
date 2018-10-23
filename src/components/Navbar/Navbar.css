@@ -54,3 +54,7 @@ nav > ul {
   border-radius: 18px;
   padding: 8px;
 }
+
+a.selected {
+  color: rgba(85, 172, 238, 1);
+}
