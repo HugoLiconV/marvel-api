@@ -25,16 +25,6 @@ const ComicDetails = () => (
         {/* TODO: Agregar icono + */}
         <button>+ Me interesa</button>
       </div>
-      {/* <div className="cell cell-3">
-        <h3>Descripción</h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, id 
-          sed. Quas autem dolorem unde ab aut labore possimus sapiente reiciendis 
-          corrupti, numquam distinctio quisquam quia vel eos vero dolorum?
-        </p>
-      </div> */}
-      {/* <div className="cell cell-4"> */}
-      {/* </div> */}
     </div>
     <Characters/>
   </div>
