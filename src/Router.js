@@ -4,12 +4,12 @@ import Main from './components/Main/Main';
 import CharacterDetails from './components/CharacterDetails/CharacterDetails'
 import ComicDetails from "./components/ComicDetails/ComicDetails";
 
-const Router = () => (
+const Router = (props) => (
   <Switch>
-    <Route exact path="/" component={Main}/>
+    <Route exact path="/" component={Main} foo="bar"/>
     <Route path="/comics/:id" component={ComicDetails}/>
-    <Route path="/characters/:id" component={CharacterDetails}/>
-    <Route path="/comics/" component={Main}/>
+    <Route path="/characters/:id" component={CharacterDetails} foo="bar"/>
+    <Route path="/comics/" component={Main} foo="bar"/>
     <Route path="/characters/" component={Main}/>
   </Switch>
 )
