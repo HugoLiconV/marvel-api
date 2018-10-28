@@ -4,21 +4,38 @@ import {withRouter} from 'react-router-dom';
 
 const Comic = (props) => {
   const comic = props.comic
+  const comicDate = new Date(comic.dates[0]['date']);
+  const localeCode = 'en';
   const goToDetails = e => (console.log(props))
+  const getImageUrl = (url, extension) => `${url}/portrait_xlarge.${extension}`
 
   return (
-    <div className="Comic">
-      <div className="flex-container">
-        <img className="image" src={`${comic.thumbnail.path}/portrait_xlarge.${comic.thumbnail.extension}`} alt="comic"/>
+    <React.Fragment>
+      <div className="Comic">
+        <img className="image" src={getImageUrl(comic.thumbnail.path, comic.thumbnail.extension)} alt="comic"/>
         <div className="details">
           <h3 className="title">{comic.title}</h3>
-          <p className="date">{new Date(comic.dates[0]['date']).toLocaleDateString()}</p>
-          <p className="pages">{comic.pageCount} pages</p>
-          <p className="price">${comic.prices[0]['price']}</p>
+          <div className="flex-space"></div>
           <button className="btn" onClick={goToDetails}>Details</button>
+          <div className="stats clearfix">
+            <div className="one-third">
+              <div className="stat">{comicDate.toLocaleString(localeCode, { year: 'numeric' })}</div>
+              <div className="stat-value">{comicDate.toLocaleDateString(localeCode, { month: 'short' })}</div>
+            </div>
+
+            <div className="one-third">
+              <div className="stat">{comic.pageCount}</div>
+              <div className="stat-value">Pages</div>
+            </div>
+
+            <div className="one-third no-border">
+              <div className="stat">${comic.prices[0]['price']}</div>
+              <div className="stat-value">Cost</div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </React.Fragment>
   )
 }
 
