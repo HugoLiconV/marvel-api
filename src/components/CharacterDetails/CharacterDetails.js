@@ -1,6 +1,6 @@
 import React from 'react';
-// import './CharacterDetails.css'
-import Comics from '../Comics/Comics'
+// import Comics from '../Comics/Comics'
+
 const CharacterDetails = () => (
   <div>
     <div className="comic-info-container">
@@ -11,8 +11,8 @@ const CharacterDetails = () => (
         <h2>Title</h2>
         <h3>Descripción</h3>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, id 
-          sed. Quas autem dolorem unde ab aut labore possimus sapiente reiciendis 
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, id
+          sed. Quas autem dolorem unde ab aut labore possimus sapiente reiciendis
           corrupti, numquam distinctio quisquam quia vel eos vero dolorum?
         </p>
         <h3>Details</h3>
@@ -21,7 +21,6 @@ const CharacterDetails = () => (
         </div>
       </div>
     </div>
-    <Comics/>
   </div>
 )
 

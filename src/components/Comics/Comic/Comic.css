@@ -1,8 +1,10 @@
 .Comic {
   background-color: #FFF;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  border-radius: 10px;
+  box-shadow: 0px -1px 20px 2px rgb(210, 209, 209)
   /* height: 200px; */
-  width: 200px;
+  /* width: 200px; */
 }
 
 .flex-container {

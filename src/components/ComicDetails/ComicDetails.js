@@ -2,7 +2,7 @@ import React from 'react';
 import './ComicDetails.css';
 import Characters from '../Characters/Characters';
 
-const ComicDetails = () => (
+const ComicDetails = (props) => (
   <div>
     <div className="comic-info-container">
       <div className="cell cell-1">

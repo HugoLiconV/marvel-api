@@ -3,16 +3,13 @@ import './Comics.css'
 import Comic from "./Comic/Comic";
 import './Comics.css'
 
-const Comics = () => {
+const Comics = (props) => {
   return (
     <div className="Comics">
       <h1>Comics</h1>
+      {console.log(props)}
       <div className="grid-container">
-        <Comic className="card"/>
-        <Comic className="card"/>
-        <Comic className="card"/>
-        <Comic className="card"/>
-        <Comic className="card"/>
+        {props.comics.map(comic=> <Comic key={comic.id} comic={comic}/>)}
       </div>
     </div>
   )

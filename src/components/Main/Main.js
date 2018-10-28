@@ -9,14 +9,11 @@ import Characters from '../Characters/Characters'
 const Main = (props) => {
   return (
     <main>
-      <h1>{props.foo}</h1>
-      {/* <Hero/> */}
+       <Hero/>
         <Switch>
           <Route exact path="/" component={Comics}/>
-          <Route path="/comics" component={Comics} foo="bar"/>
-          <Route path="/characters" component={Characters} foo="bar"/>
-          <Route path="/comics/:id" component={ComicDetails}/>
-          <Route path="/characters/:id" component={CharacterDetails} foo="bar"/>
+          <Route path="/comics" render={()=> <Comics {...props}/>}/>
+          <Route path="/characters" component={Characters}/>
         </Switch>
     </main>
   );

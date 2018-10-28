@@ -6,11 +6,9 @@ import ComicDetails from "./components/ComicDetails/ComicDetails";
 
 const Router = (props) => (
   <Switch>
-    <Route exact path="/" component={Main} foo="bar"/>
-    <Route path="/comics/:id" component={ComicDetails}/>
-    <Route path="/characters/:id" component={CharacterDetails} foo="bar"/>
-    <Route path="/comics/" component={Main} foo="bar"/>
-    <Route path="/characters/" component={Main}/>
+    <Route exact path="/(comics|characters)" render={() => (<Main {...props}/>)} />
+    <Route path="/comics/:id" component={ComicDetails} something="foo"/>
+    <Route path="/characters/:id" component={CharacterDetails}/>
   </Switch>
 )
 
