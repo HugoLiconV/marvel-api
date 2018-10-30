@@ -7,11 +7,13 @@ import Comics from "../Comics/Comics";
 import Characters from '../Characters/Characters'
 
 const Main = (props) => {
+  // TODO: PRops por defecto
   return (
     <main>
        <Hero/>
+       {/* <Comics {...props}/> */}
         <Switch>
-          <Route exact path="/" component={Comics}/>
+          <Route exact path="/" render={()=> <Comics {...props}/>}/>
           <Route path="/comics" render={()=> <Comics {...props}/>}/>
           <Route path="/characters" component={Characters}/>
         </Switch>

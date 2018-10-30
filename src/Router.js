@@ -6,6 +6,7 @@ import ComicDetails from "./components/ComicDetails/ComicDetails";
 
 const Router = (props) => (
   <Switch>
+    <Route exact path="/" render={() => (<Main {...props}/>)}/>
     <Route exact path="/(comics|characters)" render={() => (<Main {...props}/>)} />
     <Route path="/comics/:id" component={ComicDetails} something="foo"/>
     <Route path="/characters/:id" component={CharacterDetails}/>
