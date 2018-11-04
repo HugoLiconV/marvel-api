@@ -3,7 +3,6 @@ import './App.css';
 import Navbar from '../components/Navbar/Navbar';
 import { Switch, Route } from 'react-router-dom'
 import axios from 'axios';
-import { getApiParams } from '../utils'
 import Main from '../components/Main/Main'
 import ComicDetails from '../components/ComicDetails/ComicDetails';
 import CharacterDetails from '../components/CharacterDetails/CharacterDetails';
@@ -14,8 +13,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get(`http://gateway.marvel.com/v1/public/comics`,
-    getApiParams())
+    axios.get('/comics')
     .then(res => {
       if (res.data.code === 200){
         const comics = res.data.data.results;

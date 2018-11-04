@@ -6,10 +6,8 @@ export function getApiParams() {
   const ts = new Date().getTime();
   const hash = md5(ts + PRIV_KEY + PUBLIC_KEY).toString();
   return {
-    params: {
-      apikey: PUBLIC_KEY,
-      ts,
-      hash
-    }
+    apikey: PUBLIC_KEY,
+    ts,
+    hash
   }
 }

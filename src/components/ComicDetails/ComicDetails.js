@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { getApiParams } from '../../utils';
 import './ComicDetails.css';
 // import Characters from '../Characters/Characters';
 class ComicDetails extends Component {
@@ -12,9 +11,8 @@ class ComicDetails extends Component {
 
   componentDidMount(){
     const comicId = this.props.match.params.id
-    const url = `http://gateway.marvel.com/v1/public/comics/${comicId}`
-    axios.get(url,
-    getApiParams())
+    const url = `/comics/${comicId}`
+    axios.get(url)
     .then(res => {
       if (res.data.code === 200){
         const comic = res.data.data.results[0];

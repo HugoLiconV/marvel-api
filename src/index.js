@@ -4,7 +4,14 @@ import './index.css';
 import App from './containers/App';
 import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
+import axios from 'axios';
+import { getApiParams } from './utils';
 require('dotenv').config()
+
+axios.defaults.baseURL = 'http://gateway.marvel.com/v1/public'
+axios.defaults.params = {
+  ...getApiParams()
+}
 
 ReactDOM.render((
   <BrowserRouter>
