@@ -9,11 +9,11 @@
   color: white;
 }
 .cell-1 {
-  background: deepskyblue;
+  background: gray;
   grid-column: 1; 
 }
 .cell-2 {
-  background: orangered;
+  background: gray;
   grid-column: 2/3;
 }
 .cell-3 {
