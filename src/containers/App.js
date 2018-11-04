@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import Navbar from '../components/Navbar/Navbar';
-import Router from '../Router';
+import { Switch, Route } from 'react-router-dom'
 import axios from 'axios';
-import md5 from 'blueimp-md5'
+import { getApiParams } from '../utils'
 import Main from '../components/Main/Main'
+import ComicDetails from '../components/ComicDetails/ComicDetails';
+import CharacterDetails from '../components/CharacterDetails/CharacterDetails';
 class App extends Component {
   
   state = {
@@ -12,16 +14,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const PRIV_KEY = process.env.REACT_APP_PRIVATE_KEY;
-    const PUBLIC_KEY = process.env.REACT_APP_PUBLIC_KEY;
-    const ts = new Date().getTime();
-    const hash = md5(ts + PRIV_KEY + PUBLIC_KEY).toString();
-    axios.get(`http://gateway.marvel.com/v1/public/comics`,{
-      params: {
-        ts: ts,
-        apikey: PUBLIC_KEY,
-        hash,
-    }})
+    axios.get(`http://gateway.marvel.com/v1/public/comics`,
+    getApiParams())
     .then(res => {
       if (res.data.code === 200){
         const comics = res.data.data.results;
@@ -37,7 +31,11 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar/>
-         <Router comics={this.state.comics}/>
+         <Switch>
+            <Route path="/comics/:id" component={ComicDetails} />
+            <Route path="/characters/:id" component={CharacterDetails} />
+            <Route path="/" render={(props)=> <Main {...props} comics={this.state.comics}/>} />
+         </Switch>
       </div>
     );
   }

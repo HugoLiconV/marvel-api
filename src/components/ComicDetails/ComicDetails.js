@@ -1,33 +1,65 @@
-import React from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
+import { getApiParams } from '../../utils';
 import './ComicDetails.css';
-import Characters from '../Characters/Characters';
+// import Characters from '../Characters/Characters';
+class ComicDetails extends Component {
+  state = {
+    comic: {}
+  }
+  
+  getImageUrl = (url, extension) => `${url}/portrait_uncanny.${extension}`
 
-const ComicDetails = (props) => (
-  <div>
-    <div className="comic-info-container">
-      <div className="cell cell-1">
-        <h3>Image</h3>
-      </div>
-      <div className="cell cell-2">
-        <h2>Title</h2>
-        <h3>Descripción</h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, id 
-          sed. Quas autem dolorem unde ab aut labore possimus sapiente reiciendis 
-          corrupti, numquam distinctio quisquam quia vel eos vero dolorum?
-        </p>
-        <h3>Details</h3>
-        <div className="details-container">
-          Extensión: 210 Páginas
-          Publicado: 2018 10 de septiembre
+  componentDidMount(){
+    const comicId = this.props.match.params.id
+    const url = `http://gateway.marvel.com/v1/public/comics/${comicId}`
+    axios.get(url,
+    getApiParams())
+    .then(res => {
+      if (res.data.code === 200){
+        const comic = res.data.data.results[0];
+        this.setState({ comic })
+        console.log(res.data)
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
+  render() {
+    const isNotEmpty = Object.keys(this.state.comic).length !== 0
+    const comic = this.state.comic;
+    if (isNotEmpty) {
+      const comicDate = new Date(comic.dates[0]['date']);
+      const localeCode = 'en';
+      return (
+        <div>
+          <div className="comic-info-container">
+            <div className="cell cell-1">
+              <img className="image" 
+                  src={this.getImageUrl(comic.thumbnail.path, comic.thumbnail.extension)} alt="comic"/>
+            </div>
+            <div className="cell cell-2">
+              <h2>{comic.title}</h2>
+              <h3>Descripción</h3>
+              <p>{comic.description}</p>
+              <h3>Details</h3>
+              <div className="details-container">
+                Extensión: {comic.pageCount} Páginas
+                Publicado: 2018 10 de septiembre
+              </div>
+              <button className="btn">Comprar | ${comic.prices[0]['price']}</button>
+              {/* TODO: Agregar icono + */}
+              <button className="btn">+ Me interesa</button>
+            </div>
+          </div>
         </div>
-        <button>Comprar | $100.00</button>
-        {/* TODO: Agregar icono + */}
-        <button>+ Me interesa</button>
-      </div>
-    </div>
-    <Characters/>
-  </div>
-)
+      )
+    } else {
+      return <h2>Loading...</h2>
+    }
+  }
+}
 
 export default ComicDetails;
