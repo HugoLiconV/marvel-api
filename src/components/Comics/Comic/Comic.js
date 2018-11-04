@@ -1,12 +1,14 @@
 import React from 'react';
 import './Comic.css';
-import {withRouter} from 'react-router-dom';
 
 const Comic = (props) => {
   const comic = props.comic
   const comicDate = new Date(comic.dates[0]['date']);
   const localeCode = 'en';
-  const goToDetails = e => (console.log(props))
+  const goToDetails = event => {
+    event.preventDefault();
+    props.history.push(`/comics/${comic.id}`)
+  }
   const getImageUrl = (url, extension) => `${url}/portrait_xlarge.${extension}`
 
   return (
