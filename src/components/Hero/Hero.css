@@ -1,6 +1,5 @@
 .Hero {
-  /* background-color: grey; */
-  border: 1px solid black;
+  background-color: grey;
   width: 100%;
   height: 50vh;
 }
