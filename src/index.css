@@ -47,3 +47,10 @@ body {
 .u-flex-space {
   flex-grow: 1;
 }
+
+.u-flex-container-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+}

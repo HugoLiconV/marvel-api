@@ -19,7 +19,6 @@ class App extends Component {
       if (res.data.code === 200){
         const comics = res.data.data.results;
         this.setState({comics})
-        console.log(res.data.data)
       }
     })
     .catch(error => {
