@@ -1,20 +1,5 @@
 .Comic {
-  background-color: #FFF;
-  border-radius: 10px;
-  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.04);
   display: flex;
-  min-width: 100%;
-  transition: all 0.3s ease-out;
-}
-
-.flex-space {
-  flex-grow: 1;
-}
-
-.Comic:hover {
-  transform: translateY(-5px) scale(1.005) translateZ(0);
-  box-shadow: 0 24px 36px rgba(0, 0, 0, 0.11),
-    0 24px 46px rgba(220, 233, 255, 0.48);
 }
 
 .image {
@@ -38,24 +23,6 @@
 .title {
   font-size: 18px;
   color: #1C3443;
-}
-
-.btn {
-  width: 100%;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: Montserrat-Medium;
-  font-size: 12px;
-  letter-spacing: 0;
-  color: #677AA3;
-  border-radius: 18px;
-  border: 1px solid #677AA3;
-}
-
-.btn:hover {
-  background-color: white;
-  color: #677AA3;
-  cursor: pointer;
 }
 
 .stats {

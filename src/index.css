@@ -8,3 +8,42 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: #f2f4f8;
 }
+
+.u-btn {
+  margin: 0.5rem 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: Montserrat-Medium;
+  font-size: 12px;
+  letter-spacing: 0;
+  background-color: #677AA3;
+  padding: 0.5rem;
+  border-radius: 18px;
+  border: 1px solid #677AA3;
+}
+
+.u-btn:hover {
+  background-color: white;
+  color: #677AA3;
+  cursor: pointer;
+}
+
+.u-card {
+  background-color: #FFF;
+  border-radius: 10px;
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.04);
+  min-width: 100%;
+  transition: all 0.3s ease-out;
+}
+
+.u-card:hover {
+  transform: translateY(-5px) scale(1.005) translateZ(0);
+  box-shadow: 0 24px 36px rgba(0, 0, 0, 0.11),
+  0 24px 46px rgba(220, 233, 255, 0.48);
+}
+
+.u-flex-space {
+  flex-grow: 1;
+}
