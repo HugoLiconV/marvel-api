@@ -9,7 +9,8 @@ import CharacterDetails from '../components/CharacterDetails/CharacterDetails';
 class App extends Component {
   
   state = {
-    comics: []
+    comics: [],
+    totalComics: 0,
   }
 
   componentDidMount() {
@@ -18,6 +19,7 @@ class App extends Component {
       if (res.data.code === 200){
         const comics = res.data.data.results;
         this.setState({comics})
+        console.log(res.data.data)
       }
     })
     .catch(error => {
