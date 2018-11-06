@@ -1,4 +1,4 @@
-describe('Hero Component', function () {
+describe('Main Component', function () {
   it('should pass', function () {
 
   });
