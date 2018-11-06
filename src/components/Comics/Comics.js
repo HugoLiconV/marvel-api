@@ -3,22 +3,24 @@ import './Comics.css'
 import Comic from "./Comic/Comic";
 import './Comics.css'
 
-const Comics = (props) => {
+class Comics extends React.Component {
 
-  const renderComic = comic => {
+  renderComic = comic => {
     return (
-      <Comic key={comic.id} comic={comic} history={props.history}/>
+      <Comic key={comic.id} comic={comic} history={this.props.history}/>
     )
   }
 
-  return (
-    <div className="Comics">
-      <h1>Comics</h1>
-      <div className="grid-container">
-        {props.comics.map(renderComic)}
+  render() {
+    return (
+      <div className="Comics">
+        <h1>Comics</h1>
+        <div className="grid-container">
+          {this.props.comics.map(this.renderComic)}
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default Comics;
