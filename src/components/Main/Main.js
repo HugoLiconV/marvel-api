@@ -24,8 +24,8 @@ const Main = (props) => {
        <Hero/>
        {/* <Comics {...props}/> */}
         <Switch>
-          <Route exact path="/" render={()=> <Comics {...props}/>}/>
-          <Route path="/comics" render={()=> <Comics {...props}/>}/>
+          <Route exact path="/" render={(_props)=> <Comics {..._props} comics={props.comics}/>}/>
+          <Route path="/comics" render={(_props)=> <Comics {..._props} comics={props.comics}/>}/>
           <Route path="/characters" component={Characters}/>
         </Switch>
         <div className="flex-container-pagination">
