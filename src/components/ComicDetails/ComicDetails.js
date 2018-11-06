@@ -42,7 +42,7 @@ class ComicDetails extends Component {
             <div className="cell cell-2">
               <h2>{comic.title}</h2>
               <h3>Descripción</h3>
-              <p>{comic.description}</p>
+              <p>{comic.description.length > 0 ? comic.description : 'No description'}</p>
               <h3>Details</h3>
               <div className="details-container">
                 Extensión: {comic.pageCount} Páginas
