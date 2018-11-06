@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, {Component, Fragment} from "react";
 import PropTypes from "prop-types";
 import './Pagination.css'
 
@@ -20,7 +20,7 @@ const range = (from, to, step = 1) => {
 class Pagination extends Component {
   constructor(props) {
     super(props);
-    const { totalRecords = null, pageLimit = 30, pageNeighbours = 0 } = props;
+    const {totalRecords = null, pageLimit = 30, pageNeighbours = 0} = props;
 
     this.pageLimit = typeof pageLimit === "number" ? pageLimit : 30;
     this.totalRecords = typeof totalRecords === "number" ? totalRecords : 0;
@@ -32,7 +32,7 @@ class Pagination extends Component {
 
     this.totalPages = Math.ceil(this.totalRecords / this.pageLimit);
 
-    this.state = { currentPage: 1 };
+    this.state = {currentPage: 1};
   }
 
   componentDidMount() {
@@ -40,7 +40,7 @@ class Pagination extends Component {
   }
 
   gotoPage = page => {
-    const { onPageChanged = f => f } = this.props;
+    const {onPageChanged = f => f} = this.props;
 
     const currentPage = Math.max(0, Math.min(page, this.totalPages));
 
@@ -51,7 +51,7 @@ class Pagination extends Component {
       totalRecords: this.totalRecords
     };
 
-    this.setState({ currentPage }, () => onPageChanged(paginationData));
+    this.setState({currentPage}, () => onPageChanged(paginationData));
   };
 
   handleClick = (page, evt) => {
@@ -119,7 +119,7 @@ class Pagination extends Component {
 
     if (this.totalPages === 1) return null;
 
-    const { currentPage } = this.state;
+    const {currentPage} = this.state;
     const pages = this.fetchPageNumbers();
 
     return (
@@ -130,12 +130,10 @@ class Pagination extends Component {
               if (page === LEFT_PAGE)
                 return (
                   <li key={index} className="page-item">
-                    <a
-                      className="page-link"
-                      href="/#"
-                      aria-label="Previous"
-                      onClick={this.handleMoveLeft}
-                    >
+                    <a className="page-link"
+                       href="/#"
+                       aria-label="Previous"
+                       onClick={this.handleMoveLeft}>
                       <span aria-hidden="true">&laquo;</span>
                       <span className="sr-only">Previous</span>
                     </a>
@@ -145,12 +143,10 @@ class Pagination extends Component {
               if (page === RIGHT_PAGE)
                 return (
                   <li key={index} className="page-item">
-                    <a
-                      className="page-link"
-                      href="/#"
-                      aria-label="Next"
-                      onClick={this.handleMoveRight}
-                    >
+                    <a className="page-link"
+                       href="/#"
+                       aria-label="Next"
+                       onClick={this.handleMoveRight}>
                       <span aria-hidden="true">&raquo;</span>
                       <span className="sr-only">Next</span>
                     </a>
@@ -158,17 +154,13 @@ class Pagination extends Component {
                 );
 
               return (
-                <li
-                  key={index}
-                  className={`page-item${
-                    currentPage === page ? " active" : ""
-                  }`}
-                >
-                  <a
-                    className="page-link"
-                    href="/#"
-                    onClick={e => this.handleClick(page, e)}
-                  >
+                <li key={index}
+                    className={`page-item${
+                      currentPage === page ? " active" : ""
+                      }`}>
+                  <a className="page-link"
+                     href="/#"
+                     onClick={e => this.handleClick(page, e)}>
                     {page}
                   </a>
                 </li>

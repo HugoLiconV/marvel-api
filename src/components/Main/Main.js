@@ -8,16 +8,6 @@ import './Main.css'
 
 const Main = (props) => {
   // TODO: PRops por defecto
-    const onPageChanged = data => {
-      console.log('change');
-    // const { allCountries } = this.state;
-    // const { currentPage, totalPages, pageLimit } = data;
-
-    // const offset = (currentPage - 1) * pageLimit;
-    // const currentCountries = allCountries.slice(offset, offset + pageLimit);
-
-    // this.setState({ currentPage, currentCountries, totalPages });
-    };
     
   return (
     <main>
@@ -28,14 +18,6 @@ const Main = (props) => {
           <Route path="/comics" render={(_props)=> <Comics {..._props} comics={props.comics}/>}/>
           <Route path="/characters" component={Characters}/>
         </Switch>
-        <div className="flex-container-pagination">
-          <Pagination
-            totalRecords={200}
-            pageLimit={18}
-            pageNeighbours={1}
-            onPageChanged={onPageChanged}
-          />
-       </div>
     </main>
   );
 }
