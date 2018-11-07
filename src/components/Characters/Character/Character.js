@@ -4,7 +4,7 @@ const getImageUrl = (url, extension) => `${url}/portrait_xlarge.${extension}`
 
 const Character = (props) => {
   const character = props.character
-
+  if (!character) return null
   const goToDetails = event => {
     event.preventDefault();
     props.history.push(`/characters/${character.id}`)

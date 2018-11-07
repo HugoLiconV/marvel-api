@@ -3,6 +3,9 @@ import './Comic.css';
 
 const Comic = (props) => {
   const comic = props.comic
+
+  if (!comic) return null
+
   const comicDate = new Date(comic.dates[0]['date']);
   const localeCode = 'en';
   const goToDetails = event => {
