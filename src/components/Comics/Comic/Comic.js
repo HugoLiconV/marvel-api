@@ -1,10 +1,12 @@
 import React from 'react';
 import './Comic.css';
+import {isObjectEmpty} from '../../../utils';
+import PropTypes from 'prop-types';
 
 const Comic = (props) => {
   const comic = props.comic
 
-  if (!comic) return null
+  if (isObjectEmpty(comic)) return null
 
   const comicDate = new Date(comic.dates[0]['date']);
   const localeCode = 'en';
@@ -24,8 +26,8 @@ const Comic = (props) => {
           <button className="u-btn" onClick={goToDetails}>Details</button>
           <div className="stats clearfix">
             <div className="one-third">
-              <div className="stat">{comicDate.toLocaleString(localeCode, { year: 'numeric' })}</div>
-              <div className="stat-value">{comicDate.toLocaleDateString(localeCode, { month: 'short' })}</div>
+              <div className="stat">{comicDate.toLocaleString(localeCode, {year: 'numeric'})}</div>
+              <div className="stat-value">{comicDate.toLocaleDateString(localeCode, {month: 'short'})}</div>
             </div>
 
             <div className="one-third">
@@ -42,6 +44,10 @@ const Comic = (props) => {
       </div>
     </React.Fragment>
   )
+}
+
+Comic.propTypes = {
+  comic: PropTypes.object.isRequired
 }
 
 export default Comic;

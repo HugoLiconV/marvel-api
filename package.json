@@ -13,6 +13,7 @@
     "enzyme": "3.7.0",
     "enzyme-adapter-react-16": "1.6.0",
     "jest-enzyme": "7.0.1",
+    "prop-types": "15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-router-dom": "4.3.1",

@@ -11,7 +11,7 @@ import { shallow } from 'enzyme'
 
 describe('Comic Component', function () {
   it('should render', function () {
-    shallow(<Comic/>)
+    shallow(<Comic comic={{}}/>)
   });
 });
 
