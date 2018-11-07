@@ -11,3 +11,5 @@ export function getApiParams() {
     hash
   }
 }
+
+export const isObjectEmpty = (obj) => Object.keys(obj).length === 0;

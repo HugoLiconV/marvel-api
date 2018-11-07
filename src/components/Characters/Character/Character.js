@@ -1,10 +1,13 @@
 import React from 'react';
 import './Character.css'
+import PropTypes from "prop-types";
+import {isObjectEmpty} from "../../../utils";
+
 const getImageUrl = (url, extension) => `${url}/portrait_xlarge.${extension}`
 
 const Character = (props) => {
   const character = props.character
-  if (!character) return null
+  if (isObjectEmpty(character)) return null
   const goToDetails = event => {
     event.preventDefault();
     props.history.push(`/characters/${character.id}`)
@@ -16,6 +19,10 @@ const Character = (props) => {
       <h2>{character.name}</h2>
     </div>
   )
+}
+
+Character.propTypes = {
+  character: PropTypes.object.isRequired
 }
 
 export default Character;
