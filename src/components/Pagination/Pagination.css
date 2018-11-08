@@ -1,8 +1,8 @@
 .pagination {
-  display: flex;
-  padding-left: 0;
-  list-style: none;
-  border-radius: .25rem;
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: .25rem;
 }
 
 ul.pagination {
@@ -23,8 +23,8 @@ ul.pagination {
 }
 
 ul.pagination a.page-link {
-    padding: 0.75rem 1rem;
-    min-width: 3.5rem;
+    padding: 0.5rem 0.5rem;
+    min-width: auto;
     text-align: center;
     box-shadow: none !important;
     border-color: #ced4da !important;
@@ -45,10 +45,22 @@ ul.pagination li.page-item.active a.page-link {
     border-color: #ced4da !important;
 }
 
-<style>…</style>
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
     background-color: #007bff;
     border-color: #007bff;
+}
+
+
+.Pagination {
+    width: 100%;
+}
+
+.page-item {
+    flex-grow: 1;
+}
+
+.page-link {
+
 }

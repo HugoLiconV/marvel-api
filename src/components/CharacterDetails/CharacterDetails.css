@@ -18,3 +18,14 @@
 .details-container {
   display: flex;
 }
+
+@media (max-width: 720px) {
+  .character-info-container {
+    display: block;
+    padding: 0;
+  }
+
+  .cell {
+    padding: 1rem;
+  }
+}
