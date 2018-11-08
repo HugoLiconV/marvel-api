@@ -17,7 +17,7 @@ class Characters extends React.Component {
     )
   }
 
-  getCharacters = (callback, params = {}) => {
+  getCharacters = async (callback, params = {}) => {
     axios.get('/characters', {
       params: {
         ...params

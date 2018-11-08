@@ -10,7 +10,7 @@
 
 .details {
   flex-grow: 1;
-  width: 100%;
+  width: auto;
   padding: 0.5rem;
   font-family: Montserrat-Medium;
   font-size: 12px;
@@ -66,4 +66,14 @@
   content: " ";
   clear: both;
   height: 0;
+}
+
+@media (max-width: 720px) {
+  .Comic {
+    display: block;
+  }
+
+  .Comic .image {
+    width: 60%;
+  }
 }

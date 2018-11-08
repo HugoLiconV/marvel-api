@@ -33,25 +33,23 @@ class ComicDetails extends Component {
       const comicDate = new Date(comic.dates[0]['date']);
       const localeCode = 'en';
       return (
-        <div>
-          <div className="comic-info-container u-card">
-            <div className="cell cell-1">
-              <img className="image"
-                   src={this.getImageUrl(comic.thumbnail.path, comic.thumbnail.extension)} alt="comic"/>
+        <div className="comic-info-container u-card">
+          <div className="cell cell-1">
+            <img className="image"
+                 src={this.getImageUrl(comic.thumbnail.path, comic.thumbnail.extension)} alt="comic"/>
+          </div>
+          <div className="cell cell-2">
+            <h2>{comic.title}</h2>
+            <h3>Descripción</h3>
+            <p>{comic.description || 'No description'}</p>
+            <h3>Details</h3>
+            <div className="details-container">
+              Extensión: {comic.pageCount} Páginas
+              Publicado: 2018 10 de septiembre
             </div>
-            <div className="cell cell-2">
-              <h2>{comic.title}</h2>
-              <h3>Descripción</h3>
-              <p>{comic.description || 'No description'}</p>
-              <h3>Details</h3>
-              <div className="details-container">
-                Extensión: {comic.pageCount} Páginas
-                Publicado: 2018 10 de septiembre
-              </div>
-              <button className="u-btn">Comprar | ${comic.prices[0]['price']}</button>
-              {/* TODO: Agregar icono + */}
-              <button className="u-btn">+ Me interesa</button>
-            </div>
+            <button className="u-btn">Comprar | ${comic.prices[0]['price']}</button>
+            {/* TODO: Agregar icono + */}
+            <button className="u-btn">+ Me interesa</button>
           </div>
         </div>
       )

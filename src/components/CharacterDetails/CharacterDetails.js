@@ -31,22 +31,20 @@ class CharacterDetails extends Component {
 
     if (isNotEmpty) {
       return (
-        <div>
-          <div className="character-info-container u-card">
-            <div className="cell cell-1">
-              <img className="image"
-                   src={this.getImageUrl(character.thumbnail.path, character.thumbnail.extension)} alt={character.name}/>
-            </div>
-            <div className="cell cell-2">
-              <h2>{character.name}</h2>
-              <h3>Descripción</h3>
-              <p>
-                {character.description.length > 0 ? character.description : 'No description'}
-              </p>
-              <h3>Details</h3>
-              <div className="details-container">
-                No. Comics: {character.comics.available}
-              </div>
+        <div className="character-info-container u-card">
+          <div className="cell cell-1">
+            <img className="image"
+                 src={this.getImageUrl(character.thumbnail.path, character.thumbnail.extension)} alt={character.name}/>
+          </div>
+          <div className="cell cell-2">
+            <h2>{character.name}</h2>
+            <h3>Descripción</h3>
+            <p>
+              {character.description.length > 0 ? character.description : 'No description'}
+            </p>
+            <h3>Details</h3>
+            <div className="details-container">
+              No. Comics: {character.comics.available}
             </div>
           </div>
         </div>
