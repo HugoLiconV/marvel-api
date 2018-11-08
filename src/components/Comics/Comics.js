@@ -2,7 +2,6 @@ import React from 'react';
 import './Comics.css'
 import Comic from "./Comic/Comic";
 import './Comics.css'
-// import axios from "axios";
 import Pagination from "../Pagination/Pagination";
 import {connect} from 'react-redux';
 import {fetchComics} from "../../actions/comicActions";
