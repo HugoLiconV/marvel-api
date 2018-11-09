@@ -3,11 +3,11 @@ import './CharacterDetails.css';
 import {connect} from 'react-redux';
 import {fetchCharacterById} from "../../actions/characterActions";
 import PropTypes from 'prop-types';
-import {isObjectEmpty} from "../../utils";
+import {isObjectEmpty} from "../../utils/utils";
+import { getImageUrl } from "../../utils/utils";
+import  imageSizes from '../../utils/imagesSizes';
 
 class CharacterDetails extends Component {
-
-  getImageUrl = (url, extension) => `${url}/portrait_xlarge.${extension}`
 
   componentDidMount() {
     const characterId = this.props.match.params.id
@@ -22,7 +22,7 @@ class CharacterDetails extends Component {
         <div className="character-info-container u-card">
           <div className="cell cell-1">
             <img className="image"
-                 src={this.getImageUrl(character.thumbnail.path, character.thumbnail.extension)} alt={character.name}/>
+                 src={getImageUrl(character.thumbnail.path, character.thumbnail.extension)} alt={character.name}/>
           </div>
           <div className="cell cell-2">
             <h2>{character.name}</h2>

@@ -1,7 +1,8 @@
 import React from 'react';
 import './Comic.css';
-import {isObjectEmpty} from '../../../utils';
+import {isObjectEmpty} from '../../../utils/utils';
 import PropTypes from 'prop-types';
+import { getImageUrl } from "../../../utils/utils";
 
 const Comic = (props) => {
   const comic = props.comic
@@ -14,7 +15,6 @@ const Comic = (props) => {
     event.preventDefault();
     props.history.push(`/comics/${comic.id}`)
   }
-  const getImageUrl = (url, extension) => `${url}/portrait_xlarge.${extension}`
 
   return (
     <React.Fragment>
