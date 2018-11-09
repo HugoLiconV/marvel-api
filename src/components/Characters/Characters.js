@@ -3,12 +3,14 @@ import Character from './Character/Character'
 import axios from 'axios';
 import './Characters.css'
 import Pagination from "../Pagination/Pagination";
+import {connect} from 'react-redux';
+import {fetchCharacters} from "../../actions/characterActions";
+import PropTypes from 'prop-types';
 
 class Characters extends React.Component {
-  state = {
-    characters: [],
-    totalCharacters: 0,
-    limit: 0
+
+  componentDidMount() {
+    this.getCharacters()
   }
 
   renderCharacter = character => {
@@ -17,65 +19,50 @@ class Characters extends React.Component {
     )
   }
 
-  getCharacters = async (callback, params = {}) => {
-    axios.get('/characters', {
-      params: {
-        ...params
-      }
-    })
-      .then(callback)
-      .catch(error => console.log(error))
+  getCharacters = async (params = {}) => {
+    this.props.fetchCharacters(params)
   }
 
   onPageChanged = data => {
     const offset = (data.currentPage - 1) * data.pageLimit
-    const handleRequest = res => {
-      const data = res.data;
-      if (data.code === 200) {
-        const characters = data.data.results
-        this.setState({ characters })
-      }
-    };
-    this.getCharacters(handleRequest, { offset })
-  }
-
-  componentDidMount() {
-    const handleResponse = res => {
-      const data = res.data;
-      if (data.code === 200) {
-        const characters = data.data.results
-        const totalCharacters = data.data.total
-        const limit = data.data.limit
-        this.setState({
-          characters,
-          totalCharacters,
-          limit
-        })
-      }
-    }
-    this.getCharacters(handleResponse)
+    this.getCharacters({offset})
   }
 
   render() {
-    if (this.state.totalCharacters === 0) return null;
+    const {totalCharacters, characters, limit} = this.props
+
+    if (parseInt(totalCharacters) === 0) return null;
 
     return (
       <div className="Characters">
         <h1>Characters</h1>
         <div className="u-flex-container-pagination">
           <Pagination
-            totalRecords={this.state.totalCharacters}
-            pageLimit={this.state.limit}
+            totalRecords={totalCharacters}
+            pageLimit={limit}
             pageNeighbours={1}
             onPageChanged={this.onPageChanged}
           />
         </div>
         <div className="grid-container">
-          {this.state.characters.map(this.renderCharacter)}
+          {characters.map(this.renderCharacter)}
         </div>
       </div>
     )
   }
 }
 
-export default Characters;
+Characters.propTypes = {
+  fetchCharacters: PropTypes.func.isRequired,
+  limit: PropTypes.number.isRequired,
+  totalCharacters: PropTypes.number.isRequired,
+  characters: PropTypes.array.isRequired
+}
+
+const mapStateToProps = state => ({
+  characters: state.characters.characters,
+  limit: state.characters.limit,
+  totalCharacters: state.characters.totalCharacters
+})
+
+export default connect(mapStateToProps, {fetchCharacters})(Characters);

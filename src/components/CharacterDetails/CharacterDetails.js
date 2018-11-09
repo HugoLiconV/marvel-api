@@ -1,35 +1,23 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import './CharacterDetails.css';
-
-// import Comics from '../Comics/Comics'
+import {connect} from 'react-redux';
+import {fetchCharacterById} from "../../actions/characterActions";
+import PropTypes from 'prop-types';
+import {isObjectEmpty} from "../../utils";
 
 class CharacterDetails extends Component {
-  state = {
-    character: {}
-  }
 
   getImageUrl = (url, extension) => `${url}/portrait_xlarge.${extension}`
 
   componentDidMount() {
     const characterId = this.props.match.params.id
-    const url = `/characters/${characterId}`
-    axios.get(url)
-      .then(res => {
-        if (res.data.code === 200) {
-          const character = res.data.data.results[0];
-          this.setState({character})
-          console.log(character)
-        }
-      })
-      .catch(error => console.log(error))
+    this.props.fetchCharacterById(characterId);
   }
 
   render() {
-    const character = this.state.character;
-    const isNotEmpty = Object.keys(this.state.character).length !== 0
+    const character = this.props.character;
 
-    if (isNotEmpty) {
+    if (!isObjectEmpty(character)) {
       return (
         <div className="character-info-container u-card">
           <div className="cell cell-1">
@@ -56,4 +44,13 @@ class CharacterDetails extends Component {
 }
 
 
-export default CharacterDetails;
+CharacterDetails.propTypes = {
+  fetchCharacterById: PropTypes.func.isRequired,
+  character: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+  character: state.characters.character
+})
+
+export default connect(mapStateToProps, {fetchCharacterById})(CharacterDetails);

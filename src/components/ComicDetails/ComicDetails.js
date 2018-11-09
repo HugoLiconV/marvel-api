@@ -1,35 +1,23 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import './ComicDetails.css';
+import {connect} from 'react-redux';
+import {fetchComicById} from "../../actions/comicActions";
+import PropTypes from 'prop-types';
+import {isObjectEmpty} from "../../utils";
 
-// import Characters from '../Characters/Characters';
+
 class ComicDetails extends Component {
-  state = {
-    comic: {}
-  }
 
   getImageUrl = (url, extension) => `${url}/portrait_uncanny.${extension}`
 
   componentDidMount() {
     const comicId = this.props.match.params.id
-    const url = `/comics/${comicId}`
-    axios.get(url)
-      .then(res => {
-        if (res.data.code === 200) {
-          const comic = res.data.data.results[0];
-          this.setState({comic})
-          console.log(res.data)
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      })
+    this.props.fetchComicById(comicId)
   }
 
   render() {
-    const isNotEmpty = Object.keys(this.state.comic).length !== 0
-    const comic = this.state.comic;
-    if (isNotEmpty) {
+    const comic = this.props.comic;
+    if (!isObjectEmpty(comic)) {
       const comicDate = new Date(comic.dates[0]['date']);
       const localeCode = 'en';
       return (
@@ -59,4 +47,14 @@ class ComicDetails extends Component {
   }
 }
 
-export default ComicDetails;
+ComicDetails.propTypes = {
+  fetchComicById: PropTypes.func.isRequired,
+  comic: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+  comic: state.comics.comic
+})
+
+
+export default connect(mapStateToProps, {fetchComicById})(ComicDetails);
