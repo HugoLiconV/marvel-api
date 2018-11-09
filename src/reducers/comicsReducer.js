@@ -17,6 +17,12 @@ export default function (state = initialState, action) {
         totalComics: total,
         limit
       }
+    case FETCH_COMIC_BY_ID:
+      const comic = action.payload.data.results[0]
+      return {
+        ...state,
+        comic
+      }
     default:
       return state
   }

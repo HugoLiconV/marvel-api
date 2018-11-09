@@ -15,3 +15,14 @@ export const fetchComics = (params = {}) => dispatch => {
     })
     .catch(error => console.log(error))
 }
+
+export const fetchComicById = id => dispatch => {
+  axios.get(`/comics/${id}`)
+    .then(comic => {
+      dispatch({
+        type: FETCH_COMIC_BY_ID,
+        payload: comic.data
+      })
+    }).catch(error => { console.log(error) })
+}
+
