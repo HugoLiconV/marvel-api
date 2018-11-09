@@ -3,12 +3,12 @@ import './ComicDetails.css';
 import {connect} from 'react-redux';
 import {fetchComicById} from "../../actions/comicActions";
 import PropTypes from 'prop-types';
-import {isObjectEmpty} from "../../utils";
+import {isObjectEmpty} from "../../utils/utils";
+import { getImageUrl } from "../../utils/utils";
+import  imageSizes from '../../utils/imagesSizes';
 
 
 class ComicDetails extends Component {
-
-  getImageUrl = (url, extension) => `${url}/portrait_uncanny.${extension}`
 
   componentDidMount() {
     const comicId = this.props.match.params.id
@@ -24,7 +24,7 @@ class ComicDetails extends Component {
         <div className="comic-info-container u-card">
           <div className="cell cell-1">
             <img className="image"
-                 src={this.getImageUrl(comic.thumbnail.path, comic.thumbnail.extension)} alt="comic"/>
+                 src={getImageUrl(comic.thumbnail.path, comic.thumbnail.extension, imageSizes.portrait.uncanny)} alt="comic"/>
           </div>
           <div className="cell cell-2">
             <h2>{comic.title}</h2>

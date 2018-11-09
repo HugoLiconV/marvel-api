@@ -1,9 +1,8 @@
 import React from 'react';
 import './Character.css'
 import PropTypes from "prop-types";
-import {isObjectEmpty} from "../../../utils";
-
-const getImageUrl = (url, extension) => `${url}/portrait_xlarge.${extension}`
+import {isObjectEmpty} from "../../../utils/utils";
+import {getImageUrl} from "../../../utils/utils";
 
 const Character = (props) => {
   const character = props.character

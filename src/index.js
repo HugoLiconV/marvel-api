@@ -4,7 +4,7 @@ import './index.css';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 import axios from 'axios';
-import {getApiParams} from './utils';
+import {getApiParams} from './utils/utils';
 import {Provider} from "react-redux";
 import store from './store'
 
