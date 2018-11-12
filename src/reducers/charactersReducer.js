@@ -4,7 +4,8 @@ const initialState = {
   characters: [],
   totalCharacters: 0,
   limit: 0,
-  character: {}
+  character: {},
+  params: {}
 }
 
 export default function (state = initialState, action) {
@@ -15,6 +16,7 @@ export default function (state = initialState, action) {
         ...state,
         characters: results,
         totalCharacters: total,
+        params: action.params,
         limit
       }
     case FETCH_CHARACTER_BY_ID:

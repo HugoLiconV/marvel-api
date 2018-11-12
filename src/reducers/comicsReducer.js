@@ -4,7 +4,8 @@ const initialState = {
   comics: [],
   totalComics: 0,
   limit: 0,
-  comic: {}
+  comic: {},
+  params: {}
 }
 
 export default function (state = initialState, action) {
@@ -15,7 +16,8 @@ export default function (state = initialState, action) {
         ...state,
         comics: results,
         totalComics: total,
-        limit
+        params: action.params,
+        limit,
       }
     case FETCH_COMIC_BY_ID:
       const comic = action.payload.data.results[0]

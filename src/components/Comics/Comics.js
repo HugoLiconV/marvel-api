@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 class Comics extends React.Component {
 
   componentDidMount() {
-    this.getComics()
+    this.props.fetchComics({ offset: 0})
   }
 
   renderComic = comic => {
@@ -20,7 +20,10 @@ class Comics extends React.Component {
   }
 
   getComics = (params = {}) => {
-    this.props.fetchComics(params)
+    this.props.fetchComics({
+      ...this.props.params,
+      ...params,
+    })
   }
 
   onPageChanged = data => {
@@ -30,7 +33,7 @@ class Comics extends React.Component {
 
   render() {
     const {totalComics, comics, limit} = this.props
-    if (totalComics === 0) return null;
+    if (parseInt(totalComics) === 0) return null;
     return (
       <div className="Comics">
         <h1>Comics</h1>
@@ -54,13 +57,15 @@ Comics.propTypes = {
   fetchComics: PropTypes.func.isRequired,
   limit: PropTypes.number.isRequired,
   totalComics: PropTypes.number.isRequired,
-  comics: PropTypes.array.isRequired
+  comics: PropTypes.array.isRequired,
+  params: PropTypes.object
 }
 
 const mapStateToProps = state => ({
   comics: state.comics.comics,
   limit: state.comics.limit,
-  totalComics: state.comics.totalComics
+  totalComics: state.comics.totalComics,
+  params: state.comics.params
 })
 
 export default connect(mapStateToProps, {fetchComics})(Comics);

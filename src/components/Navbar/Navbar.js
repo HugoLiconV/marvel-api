@@ -4,9 +4,11 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
 import {faReact} from '@fortawesome/free-brands-svg-icons'
 import {NavLink} from 'react-router-dom';
-import {
-  withRouter
-} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import {connect} from 'react-redux';
+import {fetchCharacters} from "../../actions/characterActions";
+import {fetchComics} from "../../actions/comicActions";
+import PropTypes from "prop-types";
 
 class Navbar extends React.Component {
   state = {
@@ -18,8 +20,24 @@ class Navbar extends React.Component {
   }
 
   handleSubmit = e => {
-    alert(this.state.searchTerm)
     e.preventDefault()
+    const currentLocation = this.props.location.pathname
+    const value = this.state.searchTerm
+    if (currentLocation.includes('comics')) {
+      this.props.fetchComics(value
+        ? {
+        titleStartsWith: value,
+        offset: 0 }
+        : null)
+    } else if(currentLocation.includes('characters')){
+      this.props.fetchCharacters(value ? {nameStartsWith: value} : null)
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      this.setState({searchTerm: ''})
+    }
   }
 
   render() {
@@ -69,4 +87,9 @@ class Navbar extends React.Component {
   }
 }
 
-export default withRouter(Navbar);
+Navbar.propTypes = {
+  fetchCharacters: PropTypes.func.isRequired,
+  fetchComics: PropTypes.func.isRequired
+}
+
+export default withRouter(connect(null, {fetchCharacters, fetchComics})(Navbar));
