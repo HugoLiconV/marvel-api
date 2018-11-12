@@ -11,7 +11,8 @@ export const fetchCharacters = (params = {}) => dispatch => {
     .then(characters => {
       dispatch({
         type: FETCH_CHARACTERS,
-        payload: characters.data
+        payload: characters.data,
+        params
       })
     })
     .catch(error => console.log(error))

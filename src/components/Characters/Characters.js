@@ -1,6 +1,5 @@
 import React from 'react';
 import Character from './Character/Character'
-import axios from 'axios';
 import './Characters.css'
 import Pagination from "../Pagination/Pagination";
 import {connect} from 'react-redux';
@@ -10,7 +9,7 @@ import PropTypes from 'prop-types';
 class Characters extends React.Component {
 
   componentDidMount() {
-    this.getCharacters()
+    this.props.fetchCharacters({ offset: 0 })
   }
 
   renderCharacter = character => {
@@ -20,7 +19,10 @@ class Characters extends React.Component {
   }
 
   getCharacters = async (params = {}) => {
-    this.props.fetchCharacters(params)
+    this.props.fetchCharacters({
+      ...this.props.params,
+      ...params,
+    })
   }
 
   onPageChanged = data => {
@@ -56,13 +58,15 @@ Characters.propTypes = {
   fetchCharacters: PropTypes.func.isRequired,
   limit: PropTypes.number.isRequired,
   totalCharacters: PropTypes.number.isRequired,
-  characters: PropTypes.array.isRequired
+  characters: PropTypes.array.isRequired,
+  params: PropTypes.object
 }
 
 const mapStateToProps = state => ({
   characters: state.characters.characters,
   limit: state.characters.limit,
-  totalCharacters: state.characters.totalCharacters
+  totalCharacters: state.characters.totalCharacters,
+  params: state.characters.params
 })
 
 export default connect(mapStateToProps, {fetchCharacters})(Characters);

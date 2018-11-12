@@ -10,7 +10,8 @@ export const fetchComics = (params = {}) => dispatch => {
     .then(comics => {
       dispatch({
         type: FETCH_COMICS,
-        payload: comics.data
+        payload: comics.data,
+        params
       })
     })
     .catch(error => console.log(error))

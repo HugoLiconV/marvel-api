@@ -20,9 +20,9 @@ const range = (from, to, step = 1) => {
 class Pagination extends Component {
   constructor(props) {
     super(props);
-    const {totalRecords = null, pageLimit = 30, pageNeighbours = 0} = props;
+    const {totalRecords = null, pageLimit = 20, pageNeighbours = 0} = props;
 
-    this.pageLimit = typeof pageLimit === "number" ? pageLimit : 30;
+    this.pageLimit = typeof pageLimit === "number" ? pageLimit : 20;
     this.totalRecords = typeof totalRecords === "number" ? totalRecords : 0;
 
     this.pageNeighbours =
@@ -33,6 +33,21 @@ class Pagination extends Component {
     this.totalPages = Math.ceil(this.totalRecords / this.pageLimit);
 
     this.state = {currentPage: 1};
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const {totalRecords = null, pageLimit = 20, pageNeighbours = 0} = nextProps;
+    if (totalRecords !== this.props.totalRecords) {
+      this.gotoPage(1)
+    }
+    this.pageLimit = typeof pageLimit === "number" ? pageLimit : 20;
+    this.totalRecords = typeof totalRecords === "number" ? totalRecords : 0;
+    this.pageNeighbours =
+      typeof pageNeighbours === "number"
+        ? Math.max(0, Math.min(pageNeighbours, 2))
+        : 0;
+    this.totalPages = Math.ceil(this.totalRecords / this.pageLimit);
+    return true
   }
 
   componentDidMount() {
@@ -110,7 +125,6 @@ class Pagination extends Component {
 
       return [1, ...pages, totalPages];
     }
-
     return range(1, totalPages);
   };
 
@@ -121,7 +135,6 @@ class Pagination extends Component {
 
     const {currentPage} = this.state;
     const pages = this.fetchPageNumbers();
-
     return (
       <Fragment>
         <nav aria-label="Pagination" className="Pagination">
