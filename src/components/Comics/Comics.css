@@ -1,4 +1,4 @@
-.grid-container {
+.Comics .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
   grid-auto-rows: auto;
