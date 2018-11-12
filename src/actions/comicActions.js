@@ -1,4 +1,4 @@
-import {FETCH_COMICS, FETCH_COMIC_BY_ID} from "../actions/actionTypes";
+import {FETCH_COMICS, FETCH_COMIC_BY_ID } from "../actions/actionTypes";
 import axios from "axios";
 
 export const fetchComics = (params = {}) => dispatch => {
