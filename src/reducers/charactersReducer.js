@@ -24,7 +24,6 @@ export default function (state = initialState, action) {
         character
       }
     case FETCH_CHARACTERS_BY_COMIC:
-      console.log(action.payload.data.results)
       return {
         ...state,
         characters: action.payload.data.results,
