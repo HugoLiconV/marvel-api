@@ -32,6 +32,11 @@
   justify-items: center;
 }
 
+/*.ComicDetails .u-btn {*/
+  /*width: auto;*/
+  /*padding: 0.5rem 1rem;*/
+/*}*/
+
 @media (max-width: 720px) {
   .comic-info-container {
     display: block;
