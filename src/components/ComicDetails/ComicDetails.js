@@ -24,6 +24,11 @@ class ComicDetails extends Component {
     )
   }
 
+  handleClick = () => {
+    const comic = this.props.comic;
+    this.props.history.push(`/comics/${comic.id}/characters`)
+  }
+
   render() {
     const comic = this.props.comic;
     const characters = this.props.characters;
@@ -53,12 +58,13 @@ class ComicDetails extends Component {
               <button className="u-btn">+ Me interesa</button>
             </div>
           </div>
-          {/*<div className="u-card">*/}
-            <h2>Characters in the Comic</h2>
-            <div className="grid-container" style={{padding: '1rem'}}>
-              {characters.length > 0 ? characters.map(this.renderCharacter) : <p>No characters</p>}
-            </div>
-          {/*</div>*/}
+
+          <h2>Characters in the Comic</h2>
+          <div className="grid-container" style={{padding: '1rem'}}>
+            {characters.length > 0 ? characters.map(this.renderCharacter) : <p>No characters</p>}
+          </div>
+          {/*{ characters.length > 20 && <button>See more</button> }*/}
+          <button className="u-btn" style={{width: 'auto', padding: '0.5rem 1rem'}} onClick={this.handleClick}>See more</button>
         </div>
       )
     } else {

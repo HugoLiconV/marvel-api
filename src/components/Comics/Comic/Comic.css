@@ -1,11 +1,15 @@
 .Comic {
   display: flex;
+  flex-direction: column;
+  cursor: pointer;
 }
 
-.image {
-  flex-grow: 1;
-  width: 100%;
-  background-color: salmon;
+.Comic .image {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  /*flex-grow: 1;*/
+  /*width: 100%;*/
+  /*background-color: salmon;*/
 }
 
 .details {

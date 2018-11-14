@@ -3,7 +3,9 @@
   display: grid;
   grid-template-columns: 2fr 3fr; 
   grid-template-rows: auto; 
-  grid-gap: 10px; 
+  grid-gap: 10px;
+  grid-gap: 10px;
+  min-width: auto;
 }
 .cell {
   color: white;
@@ -17,6 +19,14 @@
 
 .details-container {
   display: flex;
+}
+
+.CharacterDetails .grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+  grid-auto-rows: auto;
+  grid-gap: 1rem;
+  justify-items: center;
 }
 
 @media (max-width: 720px) {

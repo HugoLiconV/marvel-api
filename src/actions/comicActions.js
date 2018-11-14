@@ -1,5 +1,9 @@
-import {FETCH_COMICS, FETCH_COMIC_BY_ID } from "../actions/actionTypes";
 import axios from "axios";
+import {
+  FETCH_COMICS,
+  FETCH_COMIC_BY_ID,
+  FETCH_COMICS_BY_CHARACTER,
+} from "./actionTypes";
 
 export const fetchComics = (params = {}) => dispatch => {
   axios.get('/comics', {
@@ -27,3 +31,12 @@ export const fetchComicById = id => dispatch => {
     }).catch(error => { console.log(error) })
 }
 
+export const fetchComicsByCharacter = id => dispatch => {
+  axios.get(`/characters/${id}/comics`)
+    .then(comics => {
+      dispatch({
+        type: FETCH_COMICS_BY_CHARACTER,
+        payload: comics.data
+      })
+    }).catch(error => { console.log(error) })
+}
