@@ -1,6 +1,9 @@
-import { FETCH_CHARACTERS, FETCH_CHARACTERS_BY_COMIC} from "../actions/actionTypes";
-import { FETCH_CHARACTER_BY_ID } from "./actionTypes";
 import axios from "axios/index";
+import {
+  FETCH_CHARACTER_BY_ID,
+  FETCH_CHARACTERS,
+  FETCH_CHARACTERS_BY_COMIC
+} from "./actionTypes";
 
 export const fetchCharacters = (params = {}) => dispatch => {
   axios.get('/characters', {

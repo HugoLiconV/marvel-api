@@ -24,8 +24,9 @@ class ComicDetails extends Component {
     )
   }
 
-  handleClick = e => {
-    console.log('epale')
+  handleClick = () => {
+    const comic = this.props.comic;
+    this.props.history.push(`/comics/${comic.id}/characters`)
   }
 
   render() {
@@ -64,7 +65,6 @@ class ComicDetails extends Component {
           </div>
           {/*{ characters.length > 20 && <button>See more</button> }*/}
           <button className="u-btn" style={{width: 'auto', padding: '0.5rem 1rem'}} onClick={this.handleClick}>See more</button>
-
         </div>
       )
     } else {

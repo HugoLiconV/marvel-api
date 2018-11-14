@@ -1,4 +1,8 @@
-import {FETCH_CHARACTER_BY_ID, FETCH_CHARACTERS, FETCH_CHARACTERS_BY_COMIC} from "../actions/actionTypes";
+import {
+  FETCH_CHARACTER_BY_ID,
+  FETCH_CHARACTERS,
+  FETCH_CHARACTERS_BY_COMIC
+} from "../actions/actionTypes";
 
 const initialState = {
   characters: [],
@@ -29,6 +33,8 @@ export default function (state = initialState, action) {
       return {
         ...state,
         characters: action.payload.data.results,
+        totalCharacters: action.payload.data.total,
+        limit: action.payload.data.limit,
       }
     default:
       return state

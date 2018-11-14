@@ -1,4 +1,8 @@
-import {FETCH_COMICS, FETCH_COMIC_BY_ID} from "../actions/actionTypes";
+import {
+  FETCH_COMICS,
+  FETCH_COMIC_BY_ID,
+  FETCH_COMICS_BY_CHARACTER
+} from "../actions/actionTypes";
 
 const initialState = {
   comics: [],
@@ -24,6 +28,13 @@ export default function (state = initialState, action) {
       return {
         ...state,
         comic
+      }
+    case FETCH_COMICS_BY_CHARACTER:
+      return {
+        ...state,
+        comics: action.payload.data.results,
+        totalComics: action.payload.data.total,
+        limit: action.payload.data.limit,
       }
     default:
       return state
