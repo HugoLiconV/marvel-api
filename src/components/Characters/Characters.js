@@ -1,21 +1,31 @@
 import React from 'react';
-import Character from './Character/Character'
 import './Characters.css'
 import Pagination from "../Pagination/Pagination";
 import {connect} from 'react-redux';
 import {fetchCharacters} from "../../actions/characterActions";
 import PropTypes from 'prop-types';
+import Card from "../Card/Card";
+import {getImageUrl} from "../../utils/utils";
 
 class Characters extends React.Component {
 
   componentDidMount() {
-    this.props.fetchCharacters({ offset: 0 })
+    this.props.fetchCharacters({offset: 0})
   }
 
   renderCharacter = character => {
+    const imageSrc = getImageUrl(character.thumbnail.path, character.thumbnail.extension);
     return (
-      <Character key={character.id} character={character} history={this.props.history}/>
+      <Card
+        key={character.id}
+        imageSrc={imageSrc}
+        title={character.name}
+        handleClick={() => this.goToCharacterDetails(character.id)}/>
     )
+  }
+
+  goToCharacterDetails = (id) => {
+    this.props.history.push(`/characters/${id}`)
   }
 
   getCharacters = async (params = {}) => {
