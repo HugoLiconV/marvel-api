@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {fetchCharactersByComic} from "../../actions/characterActions";
 import {fetchComicsByCharacter} from "../../actions/comicActions";

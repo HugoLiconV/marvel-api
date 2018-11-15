@@ -11,7 +11,6 @@ const initialState = {
   comic: {},
   params: {},
   fetching: false,
-  fetched: false
 }
 
 export default function (state = initialState, action) {
@@ -20,7 +19,8 @@ export default function (state = initialState, action) {
       return {
         ...state,
         fetching: true,
-        fetched: false
+        comic: {},
+        comics: []
       }
     case FETCH_COMICS:
       const { results, total, limit } = action.payload.data;
@@ -30,13 +30,13 @@ export default function (state = initialState, action) {
         totalComics: total,
         params: action.params,
         fetching: false,
-        fetched: true,
         limit,
       }
     case FETCH_COMIC_BY_ID:
       const comic = action.payload.data.results[0]
       return {
         ...state,
+        fetching: false,
         comic
       }
     case FETCH_COMICS_BY_CHARACTER:
@@ -45,6 +45,7 @@ export default function (state = initialState, action) {
         comics: action.payload.data.results,
         totalComics: action.payload.data.total,
         limit: action.payload.data.limit,
+        fetching: false,
       }
     default:
       return state

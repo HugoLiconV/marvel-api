@@ -7,7 +7,6 @@ import {fetchComics} from "../../actions/comicActions";
 import PropTypes from 'prop-types';
 import Card from "../Card/Card";
 import {getImageUrl} from "../../utils/utils";
-import LoadingSpinner from "../LoadingSpin/LoadingSpin";
 
 class Comics extends React.Component {
 
@@ -56,12 +55,9 @@ class Comics extends React.Component {
             onPageChanged={this.onPageChanged}
           />
         </div>
-        {this.props.fetching
-          ? <LoadingSpinner/>
-          : <div className="grid-container">
-            {comics.map(this.renderComic)}
-          </div>
-        }
+        <div className="grid-container">
+          {comics.map(this.renderComic)}
+        </div>
       </div>
     )
   }
@@ -73,8 +69,7 @@ Comics.propTypes = {
   totalComics: PropTypes.number.isRequired,
   comics: PropTypes.array.isRequired,
   params: PropTypes.object,
-  fetching: PropTypes.bool.isRequired,
-  fetched: PropTypes.bool.isRequired
+  fetching: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -82,8 +77,7 @@ const mapStateToProps = state => ({
   limit: state.comics.limit,
   totalComics: state.comics.totalComics,
   params: state.comics.params,
-  fetching: state.comics.fetching,
-  fetched: state.comics.fetched,
+  fetching: state.comics.fetching
 })
 
 export default connect(mapStateToProps, {fetchComics})(Comics);

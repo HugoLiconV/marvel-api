@@ -1,10 +1,18 @@
 import React from 'react';
-import {faSpinner} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import TopBarProgress from "react-topbar-progress-indicator"
+
+TopBarProgress.config({
+  barColors: {
+    "0": "#0a9dff",
+    "1.0": "#ff2004",
+  },
+  shadowBlur: 5,
+  barThickness: 5
+})
 
 const LoadingSpinner = () => (
   <div>
-    <FontAwesomeIcon icon={faSpinner} spin size="6x"/>
+    <TopBarProgress />
   </div>
 );
 

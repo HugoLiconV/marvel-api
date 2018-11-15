@@ -23,6 +23,7 @@ export const fetchComics = (params = {}) => dispatch => {
 }
 
 export const fetchComicById = id => dispatch => {
+  dispatch({type: FETCH_COMICS_START})
   axios.get(`/comics/${id}`)
     .then(comic => {
       dispatch({
@@ -35,6 +36,7 @@ export const fetchComicById = id => dispatch => {
 }
 
 export const fetchComicsByCharacter = (id, params = {}) => dispatch => {
+  dispatch({type: FETCH_COMICS_START})
   axios.get(`/characters/${id}/comics`, {
     params: {
       ...params
