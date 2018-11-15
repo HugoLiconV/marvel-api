@@ -31,11 +31,6 @@ class CharacterDetails extends Component {
     this.props.history.push(`/comics/${id}`)
   }
 
-  handleClick = () => {
-    const character = this.props.character;
-    this.props.history.push(`/characters/${character.id}/comics`)
-  }
-
   render() {
     const character = this.props.character;
     const comics = this.props.comics;
@@ -49,7 +44,7 @@ class CharacterDetails extends Component {
             </div>
             <div className="cell cell-2">
               <h2>{character.name}</h2>
-              <h3>Descripción</h3>
+              <h3>Description</h3>
               <p>
                 {character.description.length > 0 ? character.description : 'No description'}
               </p>
@@ -63,7 +58,7 @@ class CharacterDetails extends Component {
           <div className="grid-container" style={{padding: '1rem'}}>
             {comics.length > 0 ? comics.map(this.renderComic) : <p>No comics</p>}
           </div>
-          {comics.length > 20 &&
+          {character.comics.available > 20 &&
           <button
             className="u-btn"
             style={{width: 'auto', padding: '0.5rem 1rem'}}

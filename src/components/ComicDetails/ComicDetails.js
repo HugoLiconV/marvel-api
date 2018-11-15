@@ -54,17 +54,32 @@ class ComicDetails extends Component {
                    alt="comic"/>
             </div>
             <div className="cell cell-2">
-              <h2>{comic.title}</h2>
-              <h3>Descripción</h3>
-              <p>{comic.description || 'No description'}</p>
-              <h3>Details</h3>
-              <div className="details-container">
-                Extensión: {comic.pageCount} Páginas
-                Publicado: 2018 10 de septiembre
-              </div>
+              <h2 className="blue">{comic.title}</h2>
+              <h3 className="blue">Descripción</h3>
+              <p className="blue">{comic.description || 'No description'}</p>
+              <h3 className="blue">Details</h3>
               <button className="u-btn">Comprar | ${comic.prices[0]['price']}</button>
-              {/* TODO: Agregar icono + */}
               <button className="u-btn">+ Me interesa</button>
+              <div className="stats clearfix">
+                <div className="stat-section">
+                  <div className="stat">{comicDate.toLocaleString(localeCode, {year: 'numeric'})}</div>
+                  <div className="stat-value">{comicDate.toLocaleDateString(localeCode, {month: 'short'})}</div>
+                </div>
+
+                <div className="stat-section">
+                  <div className="stat">{comic.pageCount}</div>
+                  <div className="stat-value">Pages</div>
+                </div>
+
+                <div className="stat-section">
+                  <div className="stat">${comic.prices[0]['price']}</div>
+                  <div className="stat-value">Cost</div>
+                </div>
+                <div className="stat-section">
+                  <div className="stat">{comic.characters.available}</div>
+                  <div className="stat-value">Characters</div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -72,10 +87,13 @@ class ComicDetails extends Component {
           <div className="grid-container" style={{padding: '1rem'}}>
             {characters.length > 0 ? characters.map(this.renderCharacter) : <p>No characters</p>}
           </div>
-          {/*{ characters.length > 20 && <button>See more</button> }*/}
-          <button className="u-btn" style={{width: 'auto', padding: '0.5rem 1rem'}} onClick={this.handleClick}>See
+          {comic.characters.available > 20 &&
+          <button
+            className="u-btn"
+            style={{width: 'auto', padding: '0.5rem 1rem'}}
+            onClick={this.handleClick}>See
             more
-          </button>
+          </button>}
         </div>
       )
     } else {

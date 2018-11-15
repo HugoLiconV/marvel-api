@@ -68,14 +68,16 @@ Comics.propTypes = {
   limit: PropTypes.number.isRequired,
   totalComics: PropTypes.number.isRequired,
   comics: PropTypes.array.isRequired,
-  params: PropTypes.object
+  params: PropTypes.object,
+  fetching: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => ({
   comics: state.comics.comics,
   limit: state.comics.limit,
   totalComics: state.comics.totalComics,
-  params: state.comics.params
+  params: state.comics.params,
+  fetching: state.comics.fetching
 })
 
 export default connect(mapStateToProps, {fetchComics})(Comics);
