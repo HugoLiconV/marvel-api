@@ -2,10 +2,11 @@ import axios from "axios";
 import {
   FETCH_COMICS,
   FETCH_COMIC_BY_ID,
-  FETCH_COMICS_BY_CHARACTER,
+  FETCH_COMICS_BY_CHARACTER, FETCH_COMICS_START,
 } from "./actionTypes";
 
 export const fetchComics = (params = {}) => dispatch => {
+  dispatch({type: FETCH_COMICS_START})
   axios.get('/comics', {
     params: {
       ...params

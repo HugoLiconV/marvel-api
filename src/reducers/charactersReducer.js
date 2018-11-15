@@ -9,7 +9,9 @@ const initialState = {
   totalCharacters: 0,
   limit: 0,
   character: {},
-  params: {}
+  params: {},
+  fetching: false,
+  fetched: false,
 }
 
 export default function (state = initialState, action) {
