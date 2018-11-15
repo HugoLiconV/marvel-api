@@ -1,22 +1,32 @@
 import React from 'react';
 import './Comics.css'
-import Comic from "./Comic/Comic";
 import './Comics.css'
 import Pagination from "../Pagination/Pagination";
 import {connect} from 'react-redux';
 import {fetchComics} from "../../actions/comicActions";
 import PropTypes from 'prop-types';
+import Card from "../Card/Card";
+import {getImageUrl} from "../../utils/utils";
 
 class Comics extends React.Component {
 
   componentDidMount() {
-    this.props.fetchComics({ offset: 0})
+    this.props.fetchComics({offset: 0})
   }
 
   renderComic = comic => {
+    const imageSrc = getImageUrl(comic.thumbnail.path, comic.thumbnail.extension);
     return (
-      <Comic key={comic.id} comic={comic} history={this.props.history}/>
+      <Card
+        key={comic.id}
+        imageSrc={imageSrc}
+        title={comic.title}
+        handleClick={() => this.goToComicDetails(comic.id)}/>
     )
+  }
+
+  goToComicDetails = id => {
+    this.props.history.push(`/comics/${id}`)
   }
 
   getComics = (params = {}) => {

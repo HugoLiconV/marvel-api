@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import {isObjectEmpty} from "../../utils/utils";
 import {getImageUrl} from "../../utils/utils";
 import imageSizes from '../../utils/imagesSizes';
-import Character from "../Characters/Character/Character";
+import Card from "../Card/Card";
 
 
 class ComicDetails extends Component {
@@ -19,9 +19,18 @@ class ComicDetails extends Component {
   }
 
   renderCharacter = character => {
+    const imageSrc = getImageUrl(character.thumbnail.path, character.thumbnail.extension);
     return (
-      <Character key={character.id} character={character} history={this.props.history}/>
+      <Card
+        key={character.id}
+        imageSrc={imageSrc}
+        title={character.name}
+        handleClick={() => this.goToCharacterDetails(character.id)}/>
     )
+  }
+
+  goToCharacterDetails = (id) => {
+    this.props.history.push(`/characters/${id}`)
   }
 
   handleClick = () => {
@@ -64,7 +73,9 @@ class ComicDetails extends Component {
             {characters.length > 0 ? characters.map(this.renderCharacter) : <p>No characters</p>}
           </div>
           {/*{ characters.length > 20 && <button>See more</button> }*/}
-          <button className="u-btn" style={{width: 'auto', padding: '0.5rem 1rem'}} onClick={this.handleClick}>See more</button>
+          <button className="u-btn" style={{width: 'auto', padding: '0.5rem 1rem'}} onClick={this.handleClick}>See
+            more
+          </button>
         </div>
       )
     } else {

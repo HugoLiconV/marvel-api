@@ -28,16 +28,24 @@ export const fetchCharacterById = id => dispatch => {
         type: FETCH_CHARACTER_BY_ID,
         payload: character.data
       })
-    }).catch(error => { console.log(error) })
+    }).catch(error => {
+    console.log(error)
+  })
 }
 
 
-export const fetchCharactersByComic = id => dispatch => {
-  axios.get(`/comics/${id}/characters`)
+export const fetchCharactersByComic = (id, params = {}) => dispatch => {
+  axios.get(`/comics/${id}/characters`, {
+    params: {
+      ...params
+    }
+  })
     .then(characters => {
       dispatch({
         type: FETCH_CHARACTERS_BY_COMIC,
         payload: characters.data
       })
-    }).catch(error => { console.log(error) })
+    }).catch(error => {
+    console.log(error)
+  })
 }

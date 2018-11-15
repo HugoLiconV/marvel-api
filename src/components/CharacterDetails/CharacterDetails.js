@@ -6,8 +6,7 @@ import {fetchComicsByCharacter} from "../../actions/comicActions";
 import PropTypes from 'prop-types';
 import {isObjectEmpty} from "../../utils/utils";
 import {getImageUrl} from "../../utils/utils";
-import imageSizes from '../../utils/imagesSizes';
-import Comic from "../Comics/Comic/Comic";
+import Card from "../Card/Card";
 
 class CharacterDetails extends Component {
 
@@ -18,9 +17,18 @@ class CharacterDetails extends Component {
   }
 
   renderComic = comic => {
+    const imageSrc = getImageUrl(comic.thumbnail.path, comic.thumbnail.extension);
     return (
-      <Comic key={comic.id} comic={comic} history={this.props.history}/>
+      <Card
+        key={comic.id}
+        imageSrc={imageSrc}
+        title={comic.title}
+        handleClick={() => this.goToComicDetails(comic.id)}/>
     )
+  }
+
+  goToComicDetails = id => {
+    this.props.history.push(`/comics/${id}`)
   }
 
   handleClick = () => {
@@ -55,8 +63,13 @@ class CharacterDetails extends Component {
           <div className="grid-container" style={{padding: '1rem'}}>
             {comics.length > 0 ? comics.map(this.renderComic) : <p>No comics</p>}
           </div>
-          {/*{ characters.length > 20 && <button>See more</button> }*/}
-          <button className="u-btn" style={{width: 'auto', padding: '0.5rem 1rem'}} onClick={this.handleClick}>See more</button>
+          {comics.length > 20 &&
+          <button
+            className="u-btn"
+            style={{width: 'auto', padding: '0.5rem 1rem'}}
+            onClick={this.handleClick}>See
+            more
+          </button>}
         </div>
       )
     } else {

@@ -3,20 +3,24 @@ import {connect} from 'react-redux';
 import {fetchCharactersByComic} from "../../actions/characterActions";
 import {fetchComicsByCharacter} from "../../actions/comicActions";
 import PropTypes from 'prop-types';
-import Comic from "../Comics/Comic/Comic";
-import Character from "../Characters/Character/Character";
 import './SearchResults.css';
 import Pagination from "../Pagination/Pagination";
+import {getImageUrl} from "../../utils/utils";
+import Card from "../Card/Card";
 
 class SearchResults extends React.Component {
 
   componentDidMount() {
-    const id = this.props.match.params.id
     this.searchElement = this.isSearchingFor();
+    this.getData();
+  }
+
+  getData = (params = {}) => {
+    const id = this.props.match.params.id
     if (this.searchElement === 'comics') {
-      this.props.fetchComicsByCharacter(id);
+      this.props.fetchComicsByCharacter(id, params);
     } else if (this.searchElement === 'characters') {
-      this.props.fetchCharactersByComic(id);
+      this.props.fetchCharactersByComic(id, params);
     }
   }
 
@@ -26,20 +30,30 @@ class SearchResults extends React.Component {
   }
 
   renderComic = comic => {
+    const imageSrc = getImageUrl(comic.thumbnail.path, comic.thumbnail.extension);
     return (
-      <Comic key={comic.id} comic={comic} history={this.props.history}/>
+      <Card
+        key={comic.id}
+        imageSrc={imageSrc}
+        title={comic.title}
+        handleClick={() => this.props.history.push(`/comics/${comic.id}`)}/>
     )
   }
 
   renderCharacter = character => {
+    const imageSrc = getImageUrl(character.thumbnail.path, character.thumbnail.extension);
     return (
-      <Character key={character.id} character={character} history={this.props.history}/>
+      <Card
+        key={character.id}
+        imageSrc={imageSrc}
+        title={character.name}
+        handleClick={() => this.props.history.push(`/characters/${character.id}`)}/>
     )
   }
 
   onPageChanged = data => {
     const offset = (data.currentPage - 1) * data.pageLimit
-    // this.getComics({offset})
+    this.getData({offset})
   }
 
   render() {
@@ -48,7 +62,7 @@ class SearchResults extends React.Component {
       return (
         <div className="SearchResults">
           <h1 style={{textAlign: 'left'}}>
-            {`${totalComics} ${this.searchElement} found:`}
+            {`${this.searchElement} ${totalComics} found:`}
           </h1>
           <Pagination
             totalRecords={totalComics}
