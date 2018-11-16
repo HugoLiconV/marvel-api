@@ -31,12 +31,17 @@ class CharacterDetails extends Component {
     this.props.history.push(`/comics/${id}`)
   }
 
+  handleClick = () => {
+    const character = this.props.character;
+    this.props.history.push(`/characters/${character.id}/comics`)
+  }
+
   render() {
     const character = this.props.character;
     const comics = this.props.comics;
     if (!isObjectEmpty(character)) {
       return (
-        <div className=" v">
+        <div className="CharacterDetails">
           <div className="character-info-container u-card">
             <div className="cell cell-1">
               <img className="image"

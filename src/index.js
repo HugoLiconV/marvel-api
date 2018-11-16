@@ -10,7 +10,7 @@ import store from './store'
 
 require('dotenv').config()
 
-axios.defaults.baseURL = 'http://gateway.marvel.com/v1/public'
+axios.defaults.baseURL = 'https://gateway.marvel.com/v1/public'
 axios.defaults.params = {
   ...getApiParams()
 }
