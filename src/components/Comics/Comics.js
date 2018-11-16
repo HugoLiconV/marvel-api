@@ -56,7 +56,7 @@ class Comics extends React.Component {
           />
         </div>
         <div className="grid-container">
-          {comics.map(this.renderComic)}
+          {comics && comics.map(this.renderComic)}
         </div>
       </div>
     )

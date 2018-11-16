@@ -1,15 +1,30 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import App from './App';
+import {MemoryRouter} from "react-router-dom";
+import mockStore from '../setupTests';
+import {shallow, mount} from 'enzyme';
 
-/* SMOKE TEST */
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('App Component', function () {
+  let wrapper, store;
+
+  beforeEach(() => {
+    const initialState = {
+      comics: {
+        fetching: false
+      },
+      characters: {
+        fetching: false,
+      }
+    }
+
+    store = mockStore(initialState)
+    wrapper = shallow(
+      <App store={store}/>
+    )
+  })
+
+  it('renders without crashing', () => {
+    expect(wrapper.length).toEqual(1)
+  });
+
 });
-// describe('App Component', function () {
-//   it('should pass', function () {
-//
-//   });
-// });

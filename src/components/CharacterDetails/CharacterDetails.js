@@ -36,7 +36,7 @@ class CharacterDetails extends Component {
     const comics = this.props.comics;
     if (!isObjectEmpty(character)) {
       return (
-        <div className="CharacterDetails">
+        <div className=" v">
           <div className="character-info-container u-card">
             <div className="cell cell-1">
               <img className="image"

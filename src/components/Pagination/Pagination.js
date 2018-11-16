@@ -193,4 +193,7 @@ Pagination.propTypes = {
   onPageChanged: PropTypes.func
 };
 
+Pagination.defaultProps = {
+  pageLimit: 20
+}
 export default Pagination;
