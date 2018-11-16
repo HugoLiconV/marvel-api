@@ -57,7 +57,7 @@ class Characters extends React.Component {
           />
         </div>
         <div className="grid-container">
-          {characters.map(this.renderCharacter)}
+          {characters && characters.map(this.renderCharacter)}
         </div>
       </div>
     )

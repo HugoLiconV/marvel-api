@@ -1,17 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Characters from './Characters';
-
-/* SMOKE TEST */
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Characters/>, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
-
+import ConnectedCharacters from './Characters';
+import mockStore from '../../setupTests';
+import {shallow} from "enzyme/build/index";
 
 describe('Characters Component', function () {
-  it('should pass', function () {
+  let wrapper, store;
 
+  beforeEach(() => {
+    const initialState = {
+      characters: {
+        characters: [],
+        totalCharacters: 0,
+        limit: 0,
+        params: {},
+        fetching: false,
+      }
+    };
+
+    store = mockStore(initialState)
+    wrapper = shallow(
+      <ConnectedCharacters store={store}/>
+    )
+  })
+
+  it('renders without crashing', () => {
+    const component = wrapper.dive();
+    expect(component.length).toEqual(1)
   });
 });
