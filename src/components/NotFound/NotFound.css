@@ -1,0 +1,17 @@
+.NotFound {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #1C3443;
+}
+
+.NotFound button {
+    margin: auto;
+    width: auto;
+}
+
+.NotFound a {
+    text-decoration: none;
+    color: inherit;
+    padding: 0.5rem 1rem;
+}
